@@ -1,0 +1,60 @@
+{
+	"name": "Data Cleaning and Transformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_product",
+						"type": "DatasetReference"
+					},
+					"name": "Product"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_product_target",
+						"type": "DatasetReference"
+					},
+					"name": "sinkProducts",
+					"rejectedDataLinkedService": {
+						"referenceName": "ls_adls_data",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "FilterNull",
+					"description": "Add expression for the filter"
+				},
+				{
+					"name": "ReplcaseNullWithZero"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Product_ID as short,",
+				"          Product_Name as string,",
+				"          Product_Category as string,",
+				"          Product_Cost as double,",
+				"          Product_Price as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Product",
+				"Product filter(not(((isNull(Product_ID)) || isNull(Product_Name)))) ~> FilterNull",
+				"FilterNull derive(Product_Cost = iif(isNull(Product_Cost),toDouble(0),Product_Cost)) ~> ReplcaseNullWithZero",
+				"ReplcaseNullWithZero sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkProducts"
+			]
+		}
+	}
+}
