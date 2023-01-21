@@ -1,5 +1,5 @@
 {
-	"name": "ds_product_target",
+	"name": "ds_inventory",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_data",
@@ -10,14 +10,23 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Products.csv",
-				"folderPath": "Products",
-				"fileSystem": "processeddataset"
+				"fileName": "inventory.csv",
+				"fileSystem": "rawdataset"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
 	}
 }
