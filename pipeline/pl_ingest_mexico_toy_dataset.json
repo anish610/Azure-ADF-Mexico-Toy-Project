@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "pl_ingest_mexico_toy_dataset",
 	"properties": {
 		"activities": [
 			{
