@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "mexicoToyADFProject"
+		},
+		"ls_ablob_adfprojectsa_accountKey": {
+			"value": ""
+		},
+		"ls_getFileName_connectionString": {
+			"value": ""
+		},
+		"ls_adls_data_accountKey": {
+			"value": ""
+		},
+		"ls_ablob_adfprojectsa_properties_typeProperties_url": {
+			"value": "https://adfprojectsa.dfs.core.windows.net/"
+		},
+		"ls_adls_data_properties_typeProperties_url": {
+			"value": "https://adfprojectadls.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
