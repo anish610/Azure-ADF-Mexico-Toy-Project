@@ -1,0 +1,21 @@
+{
+	"name": "ds_adls_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_data",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "rawdataset"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
