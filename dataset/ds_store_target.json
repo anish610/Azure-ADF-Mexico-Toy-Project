@@ -10,9 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "store.csv",
-				"folderPath": "Store",
-				"fileSystem": "processeddataset"
+				"fileName": "stores.csv",
+				"fileSystem": "rawdataset"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
