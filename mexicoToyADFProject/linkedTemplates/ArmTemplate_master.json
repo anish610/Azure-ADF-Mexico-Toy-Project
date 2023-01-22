@@ -11,13 +11,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_ablob_adfprojectsa'"
 		},
-		"ls_getFileName_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ls_getFileName'"
-		},
 		"ls_adls_data_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adls_data'"
+		},
+		"ls_getFileName_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_getFileName'"
 		},
 		"ls_ablob_adfprojectsa_properties_typeProperties_url": {
 			"type": "string",
@@ -57,11 +57,11 @@
 					"ls_ablob_adfprojectsa_accountKey": {
 						"value": "[parameters('ls_ablob_adfprojectsa_accountKey')]"
 					},
-					"ls_getFileName_connectionString": {
-						"value": "[parameters('ls_getFileName_connectionString')]"
-					},
 					"ls_adls_data_accountKey": {
 						"value": "[parameters('ls_adls_data_accountKey')]"
+					},
+					"ls_getFileName_connectionString": {
+						"value": "[parameters('ls_getFileName_connectionString')]"
 					},
 					"ls_ablob_adfprojectsa_properties_typeProperties_url": {
 						"value": "[parameters('ls_ablob_adfprojectsa_properties_typeProperties_url')]"

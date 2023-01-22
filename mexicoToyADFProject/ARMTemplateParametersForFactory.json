@@ -8,10 +8,10 @@
 		"ls_ablob_adfprojectsa_accountKey": {
 			"value": ""
 		},
-		"ls_getFileName_connectionString": {
+		"ls_adls_data_accountKey": {
 			"value": ""
 		},
-		"ls_adls_data_accountKey": {
+		"ls_getFileName_connectionString": {
 			"value": ""
 		},
 		"ls_ablob_adfprojectsa_properties_typeProperties_url": {
