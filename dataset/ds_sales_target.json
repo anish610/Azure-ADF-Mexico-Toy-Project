@@ -1,5 +1,5 @@
 {
-	"name": "ds_Sales_target",
+	"name": "ds_sales_target",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_data",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "sales.csv",
+				"fileName": "Sales.csv",
 				"fileSystem": "processeddataset"
 			},
 			"columnDelimiter": ",",
