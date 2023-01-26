@@ -20,14 +20,14 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "ds_target_sales",
+						"referenceName": "ds_sales",
 						"type": "DatasetReference"
 					},
 					"name": "Sales"
 				},
 				{
 					"dataset": {
-						"referenceName": "ds_store_target",
+						"referenceName": "ds_store",
 						"type": "DatasetReference"
 					},
 					"name": "Store"
@@ -54,14 +54,14 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "ds_adls_data",
+						"referenceName": "ds_sales_target",
 						"type": "DatasetReference"
 					},
 					"name": "sinkSales"
 				},
 				{
 					"dataset": {
-						"referenceName": "ds_adls_data",
+						"referenceName": "ds_store_target",
 						"type": "DatasetReference"
 					},
 					"name": "sinkStore"
@@ -189,27 +189,26 @@
 				"CreateCalculatedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
-				"          Prop_0 as string,",
-				"          Prop_1 as string,",
-				"          Prop_2 as string",
+				"          Column_1 as string,",
+				"          Column_2 as string,",
+				"          Column_3 as string",
 				"     ),",
+				"     partitionFileNames:['Sales.csv'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkSales",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sinkSales",
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          Prop_0 as string,",
-				"          Prop_1 as string,",
-				"          Prop_2 as string",
-				"     ),",
+				"     partitionFileNames:['Store.csv'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkStore"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sinkStore"
 			]
 		}
 	}
