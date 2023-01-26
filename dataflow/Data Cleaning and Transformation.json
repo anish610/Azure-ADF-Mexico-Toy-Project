@@ -58,6 +58,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "sinkSales"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_adls_data",
+						"type": "DatasetReference"
+					},
+					"name": "sinkStore"
 				}
 			],
 			"transformations": [
@@ -82,6 +89,9 @@
 				},
 				{
 					"name": "CreateCalculatedColumn1"
+				},
+				{
+					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -94,15 +104,17 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> Product",
+				"     ignoreNoFilesFound: false,",
+				"     skipLines: 1) ~> Product",
 				"source(output(",
-				"          Column_1 as string,",
-				"          Column_2 as string,",
-				"          Column_3 as string",
+				"          Store_ID as short,",
+				"          Product_ID as short,",
+				"          Stock_On_Hand as short",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> Inventory",
+				"     ignoreNoFilesFound: false,",
+				"     skipLines: 1) ~> Inventory",
 				"source(output(",
 				"          Sale_ID as short,",
 				"          Date as date 'dd/MM/yyyy',",
@@ -112,17 +124,19 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> Sales",
+				"     ignoreNoFilesFound: false,",
+				"     skipLines: 1) ~> Sales",
 				"source(output(",
-				"          Prop_0 as string,",
-				"          Prop_1 as string,",
-				"          Prop_2 as string,",
-				"          Prop_3 as string,",
-				"          Prop_4 as string",
+				"          Store_ID as short,",
+				"          Store_Name as string,",
+				"          Store_City as string,",
+				"          Store_Location as string,",
+				"          Store_Open_Date as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> Store",
+				"     ignoreNoFilesFound: false,",
+				"     skipLines: 1) ~> Store",
 				"Product filter(not(((isNull(Product_ID)) || isNull(Product_Name)))) ~> FilterNull",
 				"FilterNull derive(Product_Cost = iif(isNull(Product_Cost),toDouble(0),Product_Cost)) ~> ReplcaseNullWithZero",
 				"Sales derive(Date = toDate(regexReplace(toString(Date), '[a-zA-Z]+',''))) ~> RemoveTextFromDate",
@@ -145,6 +159,8 @@
 				"SelectColumns derive(TotalSales = toDouble(Units) * Product_Price,",
 				"          CostPerSale = toDouble(Units) * Product_Cost) ~> CreateCalcualtedColumn",
 				"CreateCalcualtedColumn derive({ProfitPerSale } = TotalSales - CostPerSale) ~> CreateCalculatedColumn1",
+				"Store aggregate(groupBy(Store_ID),",
+				"     each(match(name!='Store_ID'), $$ = first($$))) ~> aggregate1",
 				"ReplcaseNullWithZero sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['Product.csv'],",
@@ -181,7 +197,19 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkSales"
+				"     skipDuplicateMapOutputs: true) ~> sinkSales",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Prop_0 as string,",
+				"          Prop_1 as string,",
+				"          Prop_2 as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkStore"
 			]
 		}
 	}
