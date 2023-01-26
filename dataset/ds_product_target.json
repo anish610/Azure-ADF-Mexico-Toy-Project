@@ -11,7 +11,6 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "Products.csv",
-				"folderPath": "Products",
 				"fileSystem": "processeddataset"
 			},
 			"columnDelimiter": ",",
