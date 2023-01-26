@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "pl_adls_raw_to_processed_data_transformation",
 	"properties": {
 		"activities": [
 			{
