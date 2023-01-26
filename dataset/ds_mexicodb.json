@@ -1,0 +1,17 @@
+{
+	"name": "ds_mexicodb",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_mexicoToyDB",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

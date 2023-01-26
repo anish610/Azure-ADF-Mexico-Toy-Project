@@ -1,5 +1,5 @@
 {
-	"name": "pl_adls_raw_to_processed_data_transformation",
+	"name": "pl_transform_adls_raw_to_processed_data",
 	"properties": {
 		"activities": [
 			{

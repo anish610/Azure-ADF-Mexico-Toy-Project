@@ -103,13 +103,7 @@
 							"outputs": [
 								{
 									"referenceName": "ds_mexicodb",
-									"type": "DatasetReference",
-									"parameters": {
-										"FileName": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							]
 						}
