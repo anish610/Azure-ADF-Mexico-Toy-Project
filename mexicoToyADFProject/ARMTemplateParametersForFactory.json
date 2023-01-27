@@ -14,6 +14,9 @@
 		"ls_getFileName_connectionString": {
 			"value": ""
 		},
+		"ls_mexicoToyDB_connectionString": {
+			"value": ""
+		},
 		"ls_ablob_adfprojectsa_properties_typeProperties_url": {
 			"value": "https://adfprojectsa.dfs.core.windows.net/"
 		},
