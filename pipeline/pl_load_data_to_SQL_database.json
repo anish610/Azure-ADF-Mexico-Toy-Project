@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "pl_load_data_to_SQL_database",
 	"properties": {
 		"activities": [
 			{
