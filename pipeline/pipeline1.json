@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -50,7 +51,7 @@
 					},
 					"activities": [
 						{
-							"name": "Copy data1_copy1",
+							"name": "Copy Data",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -75,8 +76,8 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
 								"translator": {
@@ -103,7 +104,13 @@
 							"outputs": [
 								{
 									"referenceName": "ds_mexicodb",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@replace(item().name,'.csv','')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
