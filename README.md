@@ -10,7 +10,7 @@ Steps -
 
 3- Used CopyData Activity to move data to ADLS Gen2 folder
 
-4- Used Dataflow to for Data Cleaning and adding conditional column Columns.
+4- Used Dataflow to for Data Cleaning and adding conditional columns.
 	
 	4.1- Data Cleansing - 
 		a. Null value check
